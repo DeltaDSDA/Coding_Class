@@ -1,8 +1,12 @@
-import stack
+import queue
 
-s = stack.Stack()
+s = queue.Queue()
 
-s.push(7)
+
+for i in range(6):
+    s.push(i)
+s.pop()
 print(s.storage)
 print(s.top)
+print(s.bottom)
 
