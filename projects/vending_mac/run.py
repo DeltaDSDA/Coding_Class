@@ -6,6 +6,6 @@ while(True):
         vm.print_user()
     else:
         if(vm.print_admin()):
-            
+            vm.imadmin()
         else:
-            continue:
+            continue
