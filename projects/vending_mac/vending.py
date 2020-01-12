@@ -10,10 +10,30 @@ class Vending_Machine(object):
         self.menu = []
         self.money = [0,0,0,0,0]
         self.admin = "admin"
+    
+    def save(self):
+        f = open("data.txt", 'w')
+        f.write(str(len(self.menu))+"\n")
+        for i in range(len(self.menu)):
+            f.write(self.menu[i].name)
+            f.write(str(self.menu[i].num)+"\n")
+            f.write(str(self.menu[i].price)+"\n")
+        for i in range(len(self.money)):
+            f.write(str(self.money[i])+"\n")
+        f.close()
+
+    def load(self):
+        f = open("data.txt", 'r')
+        num = int(f.readline())
+        for i in range(num):
+            self.menu.append(item(f.readline(),int(f.readline()),int(f.readline())))
+        for i in range(5):
+            self.money[i] = int(f.readline())
+        f.close()
 
     def print_whoru(self):
         answer=""
-        answer=input("user OR admin")
+        answer=input("user OR admin? ")
         if(answer=="user"):
             return True
         else:
@@ -22,16 +42,16 @@ class Vending_Machine(object):
     def print_user(self):
         
         for i in range(len(self.menu)):
-            print("%d . %s:%d \n", i+1, self.menu[i].name, self.menu[i].price)
-        answer=int(input("select menu"))
-        print("Price:%d Put money", self.menu[answer-1].price)
+            print(i+1,". ", self.menu[i].name," ", self.menu[i].price)
+        answer=int(input("select menu : "))
+        print("Price: ", self.menu[answer-1].price," Put money")
         
         money=[10000, 5000, 1000, 500, 100]
         for i in range(len(money)):
-            print("%d : %d \n", money[i], self.money[i])
+            print(money[i], " : ", self.money[i])
         tot=0
         for i in range(len(money)):
-            print("%d", money[i])
+            print(money[i])
             don=int(input())
             tot=tot+money[i]*don
             re=tot
@@ -43,9 +63,9 @@ class Vending_Machine(object):
                     tot=tot-num*money[i]
                     self.money[i]=self.money[i]-num
         elif tot<self.menu[answer-1].price:
-            print("%d Put more money", self.menu[answer-1].price-tot)
+            print(self.menu[answer-1].price-tot, "Put more money")
             for i in range(len(money)):
-                print("%d", money[i])
+                print(money[i])
                 don=int(input())
                 ltot=ltot+money[i]*don
                 self.money[i]=self.money[i]+don
@@ -65,7 +85,7 @@ class Vending_Machine(object):
 
 
     def print_admin(self):
-        answer=input("Please enter Administrator Password")
+        answer=input("Please enter Administrator Password : ")
         if(answer==self.admin):
             return True
         else:
@@ -105,7 +125,7 @@ class Vending_Machine(object):
     def Add_Stock(self):
         print("What menu stock do you want to add?")
         for i in range(len(self.menu)):
-            print("%d . %s : %d \n", i+1, self.menu[i].name, self.menu[i].num)
+            print(i+1,". ", self.menu[i].name," ", self.menu[i].num)
         choose=int(input())
         stock=int(input())
         self.menu[choose-1].num=self.menu[choose-1].num+stock
@@ -114,9 +134,9 @@ class Vending_Machine(object):
     def Put_Money(self):
         money=["10000", "5000", "1000", "500", "100"]
         for i in range(len(money)):
-            print("%s : %d \n", money[i], self.money[i])
+            print(money[i]," ",self.money[i])
         for i in range(len(money)):
-            print("%s", money[i])
+            print(money[i])
             don=int(input())
             self.money[i]=self.money[i]+don
 
@@ -124,6 +144,6 @@ class Vending_Machine(object):
         money=["10000","5000","1000","500","100"]
         don=0
         for i in range(len(money)):
-            print("%s : %d \n", money[i], self.money[i])
+            print(money[i], self.money[i])
             don=don+int(money[i])*self.money[i]
         print(don)
