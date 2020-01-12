@@ -15,7 +15,7 @@ class Vending_Machine(object):
         f = open("data.txt", 'w')
         f.write(str(len(self.menu))+"\n")
         for i in range(len(self.menu)):
-            f.write(self.menu[i].name)
+            f.write(self.menu[i].name+"\n")
             f.write(str(self.menu[i].num)+"\n")
             f.write(str(self.menu[i].price)+"\n")
         for i in range(len(self.money)):
@@ -26,7 +26,7 @@ class Vending_Machine(object):
         f = open("data.txt", 'r')
         num = int(f.readline())
         for i in range(num):
-            self.menu.append(item(f.readline(),int(f.readline()),int(f.readline())))
+            self.menu.append(item(f.readline()[:-1],int(f.readline()),int(f.readline())))
         for i in range(5):
             self.money[i] = int(f.readline())
         f.close()
@@ -39,49 +39,63 @@ class Vending_Machine(object):
         else:
             return False
 
-    def print_user(self):
-        
+    def print_user(self): 
         for i in range(len(self.menu)):
             print(i+1,". ", self.menu[i].name," ", self.menu[i].price)
         answer=int(input("select menu : "))
         print("Price: ", self.menu[answer-1].price," Put money")
         
         money=[10000, 5000, 1000, 500, 100]
-        for i in range(len(money)):
-            print(money[i], " : ", self.money[i])
+        
         tot=0
         for i in range(len(money)):
             print(money[i])
             don=int(input())
             tot=tot+money[i]*don
-            re=tot
             self.money[i]=self.money[i]+don
-        if tot>=self.menu[answer-1].price:
-            for i in range(1,len(money)):
-                if tot>money[i]:
-                    num=min(tot/money[i],self.money[i])
+
+        re = tot
+
+        if (tot >= self.menu[answer-1].price):
+            tot = tot - self.menu[answer-1].price
+            print("Charge : ")
+            for i in range(len(money)):
+                if tot>=money[i]:
+                    num=min(tot//money[i],self.money[i])
                     tot=tot-num*money[i]
                     self.money[i]=self.money[i]-num
-        elif tot<self.menu[answer-1].price:
-            print(self.menu[answer-1].price-tot, "Put more money")
+                    print(money[i], " : ", num)
+                    
+        elif (tot<self.menu[answer-1].price):
+            print(self.menu[answer-1].price-tot, " need. Put more money")
+            ltot = tot
             for i in range(len(money)):
                 print(money[i])
                 don=int(input())
                 ltot=ltot+money[i]*don
                 self.money[i]=self.money[i]+don
+            re = ltot
+
             if ltot>=self.menu[answer-1].price:
-                for i in range(1,len(money)):
-                    if ltot>money[i]:
-                        num=min(ltot/money[i],self.money[i])
+                ltot = ltot - self.menu[answer-1].price
+                print("Charge : ")
+                for i in range(len(money)):
+                    if ltot>=money[i]:
+                        num=min(ltot//money[i],self.money[i])
                         ltot=ltot-num*money[i]
                         self.money[i]=self.money[i]-num
+                        print(money[i], " : ", num)
+
             elif ltot<self.menu[answer-1].price:
                 print("Bye")
+                print("Charge: ")
                 for i in range(len(money)):
-                    if re>money[i]:
-                        num=min(re/money[i], self.money[i])
-                        re=re-num*money[i]-num
+                    if re>=money[i]:
+                        num=min(re//money[i], self.money[i])
+                        re=re-num*money[i]
                         self.money[i]=self.money[i]-num
+                        print(money[i], " : ", num)
+                print("All returned")
 
 
     def print_admin(self):
@@ -118,7 +132,7 @@ class Vending_Machine(object):
     def Del_Menu(self):
         print("What menu do you want to delete?")
         for i in range(len(self.menu)):
-            print("%d . %s \n", i+1, self.menu[i].name)
+            print(i+1,". ", self.menu[i].name)
         choose=int(input())
         self.menu.pop(choose-1)
 

@@ -11,7 +11,11 @@ while(True):
             vm.imadmin()
         else:
             continue
-    if(bool(input("do you want to end?(True:1 False:0)"))):
+
+    end = input("do you want to end?(True:1 False:0)")
+    if end=="1":
         break
+    else:
+        continue
 
 vm.save()
