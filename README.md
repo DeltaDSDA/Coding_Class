@@ -16,8 +16,8 @@ There are such test codes for testing python code.
 The first project of us.
 In vending_mac directory, there are 2 code files and 1 text file.
 
-### 1.1.1. vending.py
-It has class called Vending_Machine and item.
+> ### 1.1.1. vending.py
+> It has class called Vending_Machine and item.
 
-### 1.1.2. run.py
-We made main function for vending machine
+> ### 1.1.2. run.py
+> We made main function for vending machine
