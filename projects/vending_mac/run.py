@@ -1,4 +1,5 @@
 import vending
+import os
 
 vm = vending.Vending_Machine()
 vm.load()
@@ -13,6 +14,7 @@ while(True):
             continue
 
     end = input("do you want to end?(True:1 False:0)")
+    os.system("clear")
     if end=="1":
         break
     else:
