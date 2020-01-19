@@ -21,3 +21,26 @@ In vending_mac directory, there are 2 code files and 1 text file.
 
 > ### 1.1.2. run.py
 > We made main function for vending machine
+
+```
+vm = vending.Vending_Machine()
+vm.load()
+
+while(True):
+    if(vm.print_whoru()):
+        vm.print_user()
+    else:
+        if(vm.print_admin()):
+            vm.imadmin()
+        else:
+            continue
+
+    end = input("do you want to end?(True:1 False:0)")
+    os.system("clear")
+    if end=="1":
+        break
+    else:
+        continue
+
+vm.save()
+```
