@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>당신의 좋은 이웃 G.N</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<style>
+    html,
+  body{
+    font-family: "배달의민족 주아"
+  }
+  h1,
+  h2,
+  h3,
+  h4{
+    font-family: "배달의민족 주아"
+  }
+  h5 {
+    font-family: "배달의민족 주아"
+  }
+</style>
+<style>
+    input:-ms-input-placeholder {color:#a8a8a8;}
+    input:-webkit-input-placeholder {color:#a8a8a8;}
+    input:-moz-input-placeholder {color:#a8a8a8;}
+    #myOverlay{
+        height: 40px;
+        width: 400px;
+        border: 1px solid #1b5ac2;
+        background: #ffffff;
+    }
+    #myOverlay2{
+        height: 40px;
+        width: 400px;
+        border: 1px solid #1b5ac2;
+        background: #ffffff;
+    }
+    #search_inp{
+        font-size: 20px;
+        width: 80%;
+        padding: auto;
+        border: 20px;
+        outline: none;
+        float: left;
+    }
+    #search_btn{
+        width: 50px;
+        height:  100%;
+        border: 0px;
+        background: #1b5ac2;
+        outline: none;
+        float: right;
+        color: #ffffff;
+    }
+    
+    *{padding:0;margin:0;}
+
+
+.label-container{
+   position:fixed;
+   bottom:48px;
+   right:105px;
+   display:table;
+   visibility: hidden;
+}
+
+.label-text{
+   color:#FFF;
+   background:rgba(51,51,51,0.5);
+   display:table-cell;
+   vertical-align:middle;
+   padding:10px;
+   border-radius:3px;
+}
+
+.label-arrow{
+   display:table-cell;
+   vertical-align:middle;
+   color:#333;
+   opacity:0.5;
+}
+
+.float{
+   position:fixed;
+   width:60px;
+   height:60px;
+   bottom:40px;
+   right:40px;
+   background-color:#06C;
+   color:#FFF;
+   border-radius:50px;
+   text-align:center;
+   box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+   font-size:24px;
+   margin-top:18px;
+}
+
+a.float + div.label-container {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease;
+}
+
+a.float:hover + div.label-container{
+  visibility: visible;
+  opacity: 1;
+}
+    </style>
+
+<script type = "text/javascript">
+    function statusL(status) {
+      var loc = document.getElementById('logintext');
+      if(status == 1) {
+        loc.innerHTML = "<button class='w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey' onclick='w3_open();'><i class='fa fa-bars'></i><a href = '/' style='text-decoration:none'> G.N 좋은이웃</a></button><span class='w3-bar-item w3-right'><a style='text-decoration:none' href = '/login'>로그아웃</a></span>";
+      }
+      else {
+        loc.innerHTML = "<button class='w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey' onclick='w3_open();'><i class='fa fa-bars'></i><a href = '/' style='text-decoration:none'> G.N 좋은이웃</a></button><span class='w3-bar-item w3-right'><a style='text-decoration:none' href = '/login'>로그인</a></span>";
+      }
+    }
+  </script>
+  
+  <body class="w3-light-grey" onload="statusL(<%=login_status%>)">
+    <!-- Top container -->
+    <div class="w3-bar w3-top w3-black w3-large" style="z-index:4" id = "logintext">
+   </div>
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+      <div class="w3-container w3-row">
+        <div class="w3-col s4"> 
+          <img class="w3-circle w3-margin-right" style="width:46px">
+        </div>
+        <div class="w3-col s8 w3-bar">
+          <span>어서오세요, <strong><%=userID%>님</strong></span><br>
+          <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+          <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+          <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+        </div>
+      </div>
+      <hr>
+      <div class="w3-container">
+        <h5>메뉴</h5>
+      </div>
+      <div class="w3-bar-block">
+        <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()"
+          title="close menu"><i class="fa fa-remove fa-fw"></i>  메뉴닫기</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  친구</a>
+        <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a> -->
+        <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Orders</a> -->
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  알림</a>
+        <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a> -->
+        <a href="/token" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  후원</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  환경설정</a><br><br>
+      </div>
+    </nav>
+
+    <!-- Overlay effect widhen opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+        id="myOverlay"></div>
+
+    <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+        <!-- Header -->
+        <header class="w3-container" style="padding-top:17px">
+            <h5><b></b></h5>
+        </header>
+
+        <div class="w3-row-padding w3-margin-bottom">
+            <div class="w3-large">
+                <div id="myOverlay2" style="margin :auto">
+                    <form action="/group" method="post">
+                        <input type="text" placeholder="제목을 입력하세요." name = "subject" class="form-control" />
+                        <input type="submit" value="검색" style="width : 100px;" />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class = 'container'>
+            <table class = 'table'>
+                <thead>
+                    <tr>
+                        <th style="background: rgb(230, 230, 230)">번호</th>
+                        <th style="background: rgb(230, 230, 230)">제목</th>
+                        <th style="background: rgb(230, 230, 230)">작성자</th>
+                        <th style="background: rgb(230, 230, 230)">날짜</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < data.length; i++) { %>
+                        <tr>
+                            <td style="background: white"><%=data[i].num%></td>
+                            <td style="background: white"><a href = /group/<%=data[i].num%>><%=data[i].title%></a></td>
+                            <td style="background: white"><%=data[i].author%></td>
+                            <td style="background: white"><%=data[i].DT%></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+
+        <div class = "text-center" >
+                <ul class="pagination justify-content-center">
+                <li class = "page-item"><a class = "page-link" href = "#">이전</a></li>
+                <li class = "page-item"><a class = "page-link" href = "#">1</a></li>
+                <li class = "page-item"><a class = "page-link" href = "#">2</a></li>
+                <li class = "page-item"><a class = "page-link" href = "#">3</a></li>
+                <li class = "page-item"><a class = "page-link" href = "#">다음</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src = "../js/bootstrap.js"></script>
+
+    <a href="/group_writing" class="float">
+            <i class="fa fa-pencil my-float"></i>
+            </a>
+            <div class="label-container">
+            <div class="label-text">글 작성하기</div>
+            <i class="fa fa-play label-arrow"></i>
+            </div>
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+                overlayBg.style.display = "none";
+            } else {
+                mySidebar.style.display = 'block';
+                overlayBg.style.display = "block";
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+            overlayBg.style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>
