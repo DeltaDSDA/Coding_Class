@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$', views.main_view),
     path('account/', include('account.urls')),
+    path('boards/', include('boards.urls')),
+    path('etc/', include('etc.urls')),
 ]
