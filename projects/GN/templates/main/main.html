@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <title>당신의 좋은 이웃 G.N</title>
+{% load static %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -51,8 +52,8 @@
         <img class="w3-circle w3-margin-right" style="width:46px">
       </div>
       <div class="w3-col s8 w3-bar">  
-        <img src="C:\Users\김수완\Downloads\user">
-        <span>어서오세요, <strong><%=userID%>님</strong></span><br>
+	      <img src="{% static 'img/user.png' %}" style="width:10px; height:10px;"> 
+	      <span>어서오세요, <br><strong><%=userID%>님</strong></span><br>
         <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
         <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
         <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
